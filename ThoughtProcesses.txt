@@ -1,0 +1,16 @@
+Collisions of attacks
+	Where should it be handled?
+		Attacks Only:
+			Filter so the attacker doesnt get hit by its own attack
+			Know what area it just entered and send a signal to act accordingly
+		Reciever Only:
+			Filter for attacker again
+			Filter another time for an attack not from an ally and act accordingly
+		Both:
+			Future proof incase I want to add chained, homing, or bouncing/ splitting effects
+
+	Final Verdict:
+	 	Handle collisions in both the attack and the receiver, with the receiver having final authority.
+			The attack focuses on behavior after contact and early rejection when possible.
+			The receiver focuses on accepting/rejecting hits and applying effects.
+		This reduces unnecessary processing and keeps advanced attack behaviors easy to add.

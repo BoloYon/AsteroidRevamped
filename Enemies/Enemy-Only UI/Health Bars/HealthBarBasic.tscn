@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://g6e42uyub47s"]
+
+[ext_resource type="Script" uid="uid://c07voqj4nt2w5" path="res://Enemies/Enemy-Only UI/Health Bars/health_bar_basic.gd" id="1_vb166"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lf5p"]
+bg_color = Color(0.651478, 0, 0.170969, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(1, 0, 0, 0.6)
+shadow_size = 97
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vb166"]
+bg_color = Color(0.462194, 0.876007, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 11
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 1, 0, 0.6)
+
+[node name="HealthBarBasic" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+script = ExtResource("1_vb166")
+
+[node name="Bar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = -894.0
+offset_top = -42.0
+offset_right = 892.0
+offset_bottom = 53.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0lf5p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vb166")
+step = 0.0
+value = 50.0
+show_percentage = false

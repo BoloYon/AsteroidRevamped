@@ -1,0 +1,4 @@
+Give bullet a particle effect (like fire pixels coming out)
+Give status effects to bullets (poinson, fire, etc) with each effect doing more damage to certain enemies/ asteroids
+LASERS!
+Enemy Ships (using AI)

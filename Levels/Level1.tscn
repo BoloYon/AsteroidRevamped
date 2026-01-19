@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1id27auvuorn"]
+
+[ext_resource type="PackedScene" uid="uid://b663lcch60kk4" path="res://Player/Scenes/player.tscn" id="1_w77jt"]
+[ext_resource type="PackedScene" uid="uid://c1xqivkxvir4m" path="res://Attacks/Bullets/Basic Bullets/Scenes/basic_bullet.tscn" id="2_3anf8"]
+[ext_resource type="PackedScene" uid="uid://ba88armamegi8" path="res://Enemies/Asteroids/asteroid.tscn" id="4_nutv8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BasicBullet" parent="." instance=ExtResource("2_3anf8")]
+position = Vector2(212, 493)
+
+[node name="Player" parent="." instance=ExtResource("1_w77jt")]
+position = Vector2(733, 495)
+
+[node name="Asteroid" parent="." instance=ExtResource("4_nutv8")]
+position = Vector2(312, 300)

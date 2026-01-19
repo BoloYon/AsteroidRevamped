@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1xqivkxvir4m"]
+
+[ext_resource type="Script" uid="uid://ccnhdft3nyj5p" path="res://Attacks/Bullets/Basic Bullets/basic_bullet.gd" id="1_eofva"]
+[ext_resource type="Texture2D" uid="uid://befgr2mbxbb5f" path="res://Attacks/Bullets/Basic Bullets/Skins/Basic Projectile.png" id="1_nu1r0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eofva"]
+radius = 1009.57
+
+[node name="BasicBullet" type="CharacterBody2D"]
+z_index = -1
+scale = Vector2(0.01, 0.01)
+script = ExtResource("1_eofva")
+can_collide = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nu1r0")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-7.005, -33.525)
+shape = SubResource("CircleShape2D_eofva")
