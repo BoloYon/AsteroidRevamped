@@ -1,0 +1,3 @@
+This repository focuses on a complete ground-up redesign of my existing asteroid simulation project. The goal is to apply improved architectural decisions, modular design patterns, and cleaner system separation based on a deeper understanding of Godot’s class-based and entity-oriented workflows.
+
+This rewrite emphasizes maintainability, scalability, and clarity by restructuring core systems and refactoring earlier design choices. The project serves as an ongoing exercise in system-level thinking, iterative improvement, and building reusable components within a real-time simulation environment.
