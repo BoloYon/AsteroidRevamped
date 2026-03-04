@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://b663lcch60kk4"]
+[gd_scene load_steps=11 format=3 uid="uid://b663lcch60kk4"]
 
 [ext_resource type="Script" uid="uid://c66hfa63v3pl2" path="res://Player/Scripts/player.gd" id="1_rg7kn"]
 [ext_resource type="Texture2D" uid="uid://bqrk3n4mob26n" path="res://Player/Skins/Basic Cursor.png" id="2_52sos"]
 [ext_resource type="PackedScene" uid="uid://c1xqivkxvir4m" path="res://Attacks/Bullets/Basic Bullets/Scenes/basic_bullet.tscn" id="2_omv0o"]
-[ext_resource type="Script" uid="uid://dp0hentwsn1tr" path="res://Player/Scenes/PlayerSprite.gd" id="4_omv0o"]
+[ext_resource type="Script" uid="uid://dp0hentwsn1tr" path="res://Player/Scripts/PlayerSprite.gd" id="4_omv0o"]
+[ext_resource type="Script" uid="uid://dmwl2w215o3ky" path="res://Handlers/00_Global Handlers/MASTER_HANDLER.gd" id="5_bw35f"]
+[ext_resource type="Script" uid="uid://cnf2k60yn51bj" path="res://Player/Scripts/player_health_handler.gd" id="6_qo0kk"]
+[ext_resource type="Script" uid="uid://kv2v8gtxxw8v" path="res://Handlers/02_Player Handlers/player_movement_handler.gd" id="6_xwb2w"]
+[ext_resource type="Script" uid="uid://bbbxcqidbpdsy" path="res://Player/Scripts/player_collision_handler.gd" id="7_2hb64"]
+[ext_resource type="Script" uid="uid://v5gmaulyv611" path="res://Handlers/01_Handler Frames/wrap_handler.gd" id="8_vov0p"]
+[ext_resource type="Script" uid="uid://rhbylr3wpvgt" path="res://Player/Scripts/player_attack_handler.gd" id="9_yq18l"]
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.045, 0.045)
@@ -13,8 +19,10 @@ _speed = 300.0
 _bullet_speed = 350.0
 _reload = 1.0
 can_attack = true
+has_health = true
 can_collide = true
-can_wrap = true
+can_die = true
+_base_body_damage = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
@@ -25,5 +33,23 @@ script = ExtResource("4_omv0o")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(1022.22, 0, 844.444, 244.444, 0, 666.667, -377.778, 711.111, -444.444, 511.111, -333.333, 177.778, -911.111, 177.778, -1022.22, 0, -888.889, -177.778, -333.333, -177.778, -444.444, -511.111, -377.778, -711.111, 0, -666.667, 933.333, -155.556)
+
+[node name="MasterHandler" type="Node" parent="."]
+script = ExtResource("5_bw35f")
+
+[node name="HealthHandler" type="Node" parent="MasterHandler"]
+script = ExtResource("6_qo0kk")
+
+[node name="CollisionHandler" type="Node" parent="MasterHandler"]
+script = ExtResource("7_2hb64")
+
+[node name="WrapHandler" type="Node" parent="MasterHandler"]
+script = ExtResource("8_vov0p")
+
+[node name="AttackHandler" type="Node" parent="MasterHandler"]
+script = ExtResource("9_yq18l")
+
+[node name="MovementHandler" type="Node" parent="MasterHandler"]
+script = ExtResource("6_xwb2w")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

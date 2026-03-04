@@ -1,16 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1xqivkxvir4m"]
+[gd_scene load_steps=13 format=3 uid="uid://c1xqivkxvir4m"]
 
-[ext_resource type="Script" uid="uid://ccnhdft3nyj5p" path="res://Attacks/Bullets/Basic Bullets/basic_bullet.gd" id="1_eofva"]
+[ext_resource type="Script" uid="uid://ccnhdft3nyj5p" path="res://Attacks/Bullets/Basic Bullets/Scripts/basic_bullet.gd" id="1_eofva"]
 [ext_resource type="Texture2D" uid="uid://befgr2mbxbb5f" path="res://Attacks/Bullets/Basic Bullets/Skins/Basic Projectile.png" id="1_nu1r0"]
+[ext_resource type="Script" uid="uid://bl134qvsd1umy" path="res://Handlers/03_NonPlayer Entity Handler/AB_Bullet Handlers/bullet_collision_handler.gd" id="3_os6rm"]
+[ext_resource type="Script" uid="uid://dmwl2w215o3ky" path="res://Handlers/00_Global Handlers/MASTER_HANDLER.gd" id="3_pwf55"]
+[ext_resource type="Script" uid="uid://dbkyohyn1nes7" path="res://Handlers/03_NonPlayer Entity Handler/AB_Bullet Handlers/bullet_particle_handler.gd" id="4_eo00m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eofva"]
 radius = 1009.57
+
+[sub_resource type="Curve" id="Curve_pwf55"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_exbp0"]
+curve = SubResource("Curve_pwf55")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_exbp0"]
+particle_flag_disable_z = true
+spread = 0.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+radial_velocity_min = -1000.0
+radial_velocity_max = 1000.0
+scale_min = 5.0
+scale_max = 10.0
+alpha_curve = SubResource("CurveTexture_exbp0")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+collision_use_scale = true
+
+[sub_resource type="Curve" id="Curve_exbp0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_s7hn3"]
+curve = SubResource("Curve_exbp0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pwf55"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 159.99, 0)
+scale_min = 5.0
+scale_max = 5.0
+alpha_curve = SubResource("CurveTexture_s7hn3")
 
 [node name="BasicBullet" type="CharacterBody2D"]
 z_index = -1
 scale = Vector2(0.01, 0.01)
 script = ExtResource("1_eofva")
 can_collide = true
+_base_body_damage = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nu1r0")
@@ -20,3 +61,56 @@ texture = ExtResource("1_nu1r0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-7.005, -33.525)
 shape = SubResource("CircleShape2D_eofva")
+
+[node name="MasterHandler" type="Node" parent="."]
+script = ExtResource("3_pwf55")
+
+[node name="CollisionHandler" type="Node" parent="MasterHandler"]
+script = ExtResource("3_os6rm")
+
+[node name="ParticleHandler" type="Node" parent="MasterHandler"]
+script = ExtResource("4_eo00m")
+
+[node name="Particles" type="Node2D" parent="."]
+scale = Vector2(100.12, 100.12)
+
+[node name="FireEffect" type="GPUParticles2D" parent="Particles"]
+physics_interpolation_mode = 2
+modulate = Color(1, 0, 0, 0.819608)
+self_modulate = Color(1, 0, 0, 0.811765)
+show_behind_parent = true
+position = Vector2(-9.98802, 0)
+rotation = 3.14159
+emitting = false
+amount = 30
+lifetime = 0.69
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+local_coords = true
+draw_order = 0
+trail_lifetime = 0.01
+trail_sections = 28
+trail_section_subdivisions = 28
+process_material = SubResource("ParticleProcessMaterial_exbp0")
+
+[node name="LineEffect" type="GPUParticles2D" parent="Particles"]
+physics_interpolation_mode = 2
+modulate = Color(1, 1, 1, 0.439216)
+self_modulate = Color(1, 1, 1, 0.27451)
+show_behind_parent = true
+position = Vector2(-9.98802, 0)
+rotation = 1.5708
+amount = 20
+lifetime = 0.8
+speed_scale = 4.05
+randomness = 1.0
+fixed_fps = 60
+local_coords = true
+draw_order = 0
+trail_enabled = true
+trail_lifetime = 1.0
+process_material = SubResource("ParticleProcessMaterial_pwf55")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

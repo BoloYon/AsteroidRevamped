@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvfi73bmvbnsk"]
+
+[ext_resource type="Script" uid="uid://dl457jgu3q1mi" path="res://Enemies/Asteroids/asteroid_spawner.gd" id="1_pfhyf"]
+[ext_resource type="PackedScene" uid="uid://ba88armamegi8" path="res://Enemies/Asteroids/asteroid.tscn" id="2_1i0bt"]
+
+[node name="AsteroidSpawner" type="Node2D"]
+script = ExtResource("1_pfhyf")
+cooldown = 1.0
+Asteroid_Scene = ExtResource("2_1i0bt")
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, -1, 1770, -1)

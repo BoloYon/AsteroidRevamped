@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="Asteroids_Revamped"
-run/main_scene="uid://b1id27auvuorn"
+run/main_scene="uid://b2rx0mi0uk3wq"
 config/features=PackedStringArray("4.4", "Forward Plus")
+
+[autoload]
+
+PlayerTargeter="*res://Globals/PlayerTargeter.gd"
 
 [display]
 
@@ -27,9 +31,16 @@ folder_colors={
 "res://Attacks/": "purple",
 "res://Behavior Scripts/": "yellow",
 "res://Enemies/": "red",
+"res://Fonts/": "gray",
+"res://Globals/": "pink",
 "res://Levels/": "gray",
-"res://Player/": "green"
+"res://Player/": "green",
+"res://User Interface/": "teal"
 }
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 

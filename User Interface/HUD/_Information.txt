@@ -1,0 +1,7 @@
+Contains:
+	Reload UI
+	Player HP Bar
+	*CURRENT* Currency Display for Astrynite and Glintcores
+	Wave Counter
+	Wave Bar
+	Side Bar (Has upgrades, all presteiges, settings, and exit simulation)

@@ -1,35 +1,48 @@
-extends Entity
+extends EntityDamagable
+
 
 #Signals
 signal attack_pressed
+signal reload_cooldown
 
-@onready var Movement = PlayerMovement.new()
 
 @export var bulletSkins: Array[PackedScene]
+
 
 #Upgradable Stats
 @export var _speed: float
 @export var _bullet_speed: float
 @export var _reload: float
 
+
+#Handlers
+@onready var MasterHandler: Node = $MasterHandler
+var Movement: Node
+var Collision: Node
+var Wrap: Node
+var Attack: Node
+var Health: Node
+
 #Misc variables
 var can_shoot: bool = true #Helps gate shoot action from firing unwantedly
 
+
 func _ready() -> void:
-	#Connect Movement
+	#Connects handlers (Entity Script)
+	MasterHandler.init_children_handlers(self)
+	#Connect player-specific handlers
 	Movement.set_body(self)
 	
-	print(Movement._body)
-	print(Collision._body)
-	print(Wrap._body)
-	print(Attack._body)
-	
-	#Connect signals from those handlers
-	Attack.cooldown_complete.connect(_on_cooldown_finished)
-	
 	#Prevents crashing when sprite is ready. Also connects this same collision object with sprite
-	$Sprite2D.when_ready(Collision)
+	$Sprite2D.when_ready(Health)
 	
+	#Innit health values:
+	Health.set_max_health(101)
+	Health.set_health(101)
+	
+	#Stops the game when starting health is invalid
+	Health.is_health_valid()
+
 
 func _process(delta: float) -> void:
 	#Movement
@@ -41,14 +54,11 @@ func _process(delta: float) -> void:
 	
 	#Shooting
 	if Input.is_action_pressed("Attack") and can_shoot:
-		can_shoot = false
-		Attack.player_shoot(_bullet_speed, bulletSkins[0])
-		Attack.cooldown(_reload)
+		Attack.attack_action_pressed(_reload, _bullet_speed)
+	
+	#Emmiting player position to PlayerTargeter global script (for enemy and spawner uses)
+	PlayerTargeter.set_player_position(self.position)
 
-
-#Connected Signals
-func _on_cooldown_finished():
-	can_shoot = true
 
 #Collision Detection
 func _on_area_2d_area_entered(area: Area2D) -> void:

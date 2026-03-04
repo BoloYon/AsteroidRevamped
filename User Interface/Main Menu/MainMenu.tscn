@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://dco711o7tk7is"]
+
+[ext_resource type="Script" uid="uid://b7wmjol8ya2i" path="res://User Interface/Main Menu/main_menu.gd" id="1_mr325"]
+[ext_resource type="FontFile" uid="uid://re3ljinihu5q" path="res://Fonts/clear-sans/ClearSans-Bold.ttf" id="2_4qsi2"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mr325")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.436
+anchor_top = 0.111
+anchor_right = 0.564
+anchor_bottom = 0.206
+offset_left = 0.879944
+offset_top = 0.119987
+offset_right = 0.119995
+offset_bottom = -0.480011
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_4qsi2")
+theme_override_font_sizes/font_size = 40
+text = "MAIN MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 898.0
+offset_top = 304.0
+offset_right = 1022.0
+offset_bottom = 353.0
+theme_override_fonts/font = ExtResource("2_4qsi2")
+theme_override_font_sizes/font_size = 29
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 898.0
+offset_top = 402.62
+offset_right = 1022.0
+offset_bottom = 451.62
+theme_override_fonts/font = ExtResource("2_4qsi2")
+theme_override_font_sizes/font_size = 29
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 898.0
+offset_top = 501.24
+offset_right = 1022.0
+offset_bottom = 550.24
+theme_override_fonts/font = ExtResource("2_4qsi2")
+theme_override_font_sizes/font_size = 29
+text = "Exit"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

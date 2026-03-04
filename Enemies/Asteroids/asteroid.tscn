@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba88armamegi8"]
+[gd_scene load_steps=8 format=3 uid="uid://ba88armamegi8"]
 
-[ext_resource type="Script" uid="uid://wx42nam80ude" path="res://Enemies/Asteroids/asteroid.gd" id="1_da7a6"]
+[ext_resource type="Script" uid="uid://wx42nam80ude" path="res://Enemies/Asteroids/Asteroid.gd" id="1_da7a6"]
 [ext_resource type="Texture2D" uid="uid://be73tsv5ukkda" path="res://Enemies/Asteroids/MeteorBasicSkin.png" id="2_ubvxm"]
 [ext_resource type="PackedScene" uid="uid://g6e42uyub47s" path="res://Enemies/Enemy-Only UI/Health Bars/HealthBarBasic.tscn" id="3_ubvxm"]
+[ext_resource type="Script" uid="uid://dmwl2w215o3ky" path="res://Handlers/00_Global Handlers/MASTER_HANDLER.gd" id="4_slfbv"]
+[ext_resource type="Script" uid="uid://df4aio736en3p" path="res://Handlers/03_NonPlayer Entity Handler/AA_Framework Handlers/nonplayer_health_handler.gd" id="5_u0djf"]
+[ext_resource type="Script" uid="uid://bsnxs8u28do4s" path="res://Handlers/01_Handler Frames/collision_handler.gd" id="5_y002g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_da7a6"]
 radius = 1004.04
@@ -10,7 +13,10 @@ radius = 1004.04
 [node name="Asteroid" type="CharacterBody2D"]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_da7a6")
+has_health = true
 can_collide = true
+can_die = true
+_base_body_damage = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ubvxm")
@@ -21,5 +27,17 @@ texture = ExtResource("2_ubvxm")
 shape = SubResource("CircleShape2D_da7a6")
 
 [node name="HealthBarBasic" parent="." instance=ExtResource("3_ubvxm")]
+visible = false
 offset_top = -1250.0
 offset_bottom = -1250.0
+
+[node name="HandlerMaster" type="Node" parent="."]
+script = ExtResource("4_slfbv")
+
+[node name="CollisionHandler" type="Node" parent="HandlerMaster"]
+script = ExtResource("5_y002g")
+
+[node name="HealthHandler" type="Node" parent="HandlerMaster"]
+script = ExtResource("5_u0djf")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

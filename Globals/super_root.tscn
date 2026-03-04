@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2rx0mi0uk3wq"]
+
+[ext_resource type="Script" uid="uid://cvhqj4e52jh5r" path="res://Globals/scene_manager.gd" id="1_0rfot"]
+[ext_resource type="PackedScene" uid="uid://c8xfdx547rcj2" path="res://User Interface/HUD/HUD.tscn" id="1_o7d8l"]
+[ext_resource type="Script" uid="uid://tbuub30a28wr" path="res://Globals/game_manager.gd" id="2_0rfot"]
+[ext_resource type="Script" uid="uid://bbi54f8la3gbg" path="res://User Interface/ui_root.gd" id="3_5o43x"]
+[ext_resource type="PackedScene" uid="uid://dco711o7tk7is" path="res://User Interface/Main Menu/MainMenu.tscn" id="4_jk2qw"]
+
+[node name="SuperRoot" type="Node2D"]
+
+[node name="SceneManager" type="Node" parent="."]
+script = ExtResource("1_0rfot")
+current_world = "res://Levels/Level1.tscn"
+
+[node name="WorldRoot" type="Node" parent="SceneManager"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("2_0rfot")
+
+[node name="UI Root" type="CanvasLayer" parent="."]
+script = ExtResource("3_5o43x")
+
+[node name="ScreenLayer" type="Control" parent="UI Root"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HUD" parent="UI Root/ScreenLayer" instance=ExtResource("1_o7d8l")]
+layout_mode = 1
+mouse_filter = 1
+
+[node name="MainMenu" parent="UI Root/ScreenLayer" instance=ExtResource("4_jk2qw")]
+layout_mode = 1
+
+[node name="PopupLayer" type="Control" parent="UI Root"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="DecisionLayer" type="Control" parent="UI Root"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1

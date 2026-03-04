@@ -1,24 +1,37 @@
 class_name Entity
 extends CharacterBody2D
 
-#Includes basic behaviors for all entities (projectile attacks, enemie, players, etc.)
+#Includes basic behaviors for all entities (projectile attacks, enemies, players, etc.)
 
-#Find out what the entity can do. Movement is defined in the subclasses as there are mutiple movement subhandlers
+
+#Booleans that give entities specific tags (set in inspector)
 @export var can_attack: bool = false
+@export var has_health: bool = false
 @export var can_collide: bool = false
-@export var can_wrap: bool = false
+@export var can_die: bool = false #Like training dummies to see dmg output (if I ever implement it lol)
 
-#Connect Handler Objects to Entity (small one time memory cost)
-@onready var Attack = AttackHandler.new()
-@onready var Collision = CollisionHandler.new()
-@onready var Wrap = WrapHandler.new()
 
-func _ready() -> void:
-#Allows use of handler functions
-	print(Attack, can_attack)
-	if can_attack:
-		Attack.set_body(self)
-	if can_collide:
-		Collision.set_body(self)
-	if can_wrap:
-		Wrap.set_body(self)
+#Actual game variables:
+@export var _base_body_damage = 0.0 #Used in determining how much damage an entity will do without mutlipliers
+
+
+#===Getters===
+func get_base_body_damage() -> float:
+	return _base_body_damage
+
+#---Getters for entity tags. Used for checking if we can run certain functions under specific entities---
+func get_health_bool() -> bool:
+	return has_health
+func get_attack_bool() -> bool:
+	return can_attack
+func get_collide_bool() -> bool:
+	return can_collide
+func get_die_bool() -> bool:
+	return can_die
+
+func set_body_base_damage(new_body_damage: float) -> void:
+	_base_body_damage = new_body_damage
+
+
+func is_ally(body_name: String) -> bool:
+	return is_in_group(body_name)
