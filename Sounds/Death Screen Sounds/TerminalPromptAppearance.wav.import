@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://do5kwalbu2cu3"
+path="res://.godot/imported/TerminalPromptAppearance.wav-7e3e2f8a3e608042e38aa9c7549876f1.sample"
+
+[deps]
+
+source_file="res://Sounds/Death Screen Sounds/TerminalPromptAppearance.wav"
+dest_files=["res://.godot/imported/TerminalPromptAppearance.wav-7e3e2f8a3e608042e38aa9c7549876f1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

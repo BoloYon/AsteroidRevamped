@@ -1,10 +1,6 @@
 extends EntityDamagable
 
 
-#Signals
-signal attack_pressed
-signal reload_cooldown
-
 
 @export var bulletSkins: Array[PackedScene]
 
@@ -22,6 +18,7 @@ var Collision: Node
 var Wrap: Node
 var Attack: Node
 var Health: Node
+var Death: Node
 
 #Misc variables
 var can_shoot: bool = true #Helps gate shoot action from firing unwantedly
@@ -30,10 +27,12 @@ var can_shoot: bool = true #Helps gate shoot action from firing unwantedly
 func _ready() -> void:
 	#Connects handlers (Entity Script)
 	MasterHandler.init_children_handlers(self)
-	#Connect player-specific handlers
-	Movement.set_body(self)
 	
-	#Prevents crashing when sprite is ready. Also connects this same collision object with sprite
+	
+	#Connect signals
+	Health.is_dead.connect(_on_death)
+	
+	#Connects health handler to sprite for immunity animations (may change later)
 	$Sprite2D.when_ready(Health)
 	
 	#Innit health values:
@@ -64,3 +63,7 @@ func _process(delta: float) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	#Send it to the collision handler
 	Collision.handle(area)
+
+#Death Detection
+func _on_death() -> void:
+	Death.init_death()

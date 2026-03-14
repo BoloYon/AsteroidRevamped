@@ -8,8 +8,6 @@ func player_move(speed: float, delta:float) -> void:
 	var Right = Input.is_action_pressed("MoveRight")
 	var Left = Input.is_action_pressed("MoveLeft")
 	
-	#Escape if escape is pressed
-	if(Input.is_action_pressed("Escape")): _body.get_tree().quit()
 	
 	#Initilalizing Positions
 	var pos : Vector2 = _body.position

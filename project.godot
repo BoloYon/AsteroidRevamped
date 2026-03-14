@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 PlayerTargeter="*res://Globals/PlayerTargeter.gd"
+Audio="*res://Globals/audio_manager.gd"
 
 [display]
 
@@ -30,6 +31,7 @@ window/stretch/aspect="expand"
 folder_colors={
 "res://Attacks/": "purple",
 "res://Behavior Scripts/": "yellow",
+"res://Currency/": "teal",
 "res://Enemies/": "red",
 "res://Fonts/": "gray",
 "res://Globals/": "pink",

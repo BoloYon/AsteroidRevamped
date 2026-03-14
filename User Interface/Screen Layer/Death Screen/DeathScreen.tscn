@@ -1,0 +1,308 @@
+[gd_scene load_steps=11 format=3 uid="uid://ce5a1uly84nx2"]
+
+[ext_resource type="FontFile" uid="uid://bglkx7froxdga" path="res://Fonts/Pixel-Promise-All/Pixel_Promise.ttf" id="1_5ajrk"]
+[ext_resource type="Script" uid="uid://cjej7cfy7obni" path="res://User Interface/Screen Layer/Death Screen/death_screen.gd" id="1_xji1v"]
+[ext_resource type="Texture2D" uid="uid://d3ecg4ay8xxwi" path="res://Custom Styles/Textures/Screen Textures/red_vignette.png" id="1_y7aq2"]
+[ext_resource type="StyleBox" uid="uid://bs070krya3hea" path="res://Custom Styles/Buttons/Hover/HoverButtonPixelPromise24.tres" id="2_xvv0o"]
+[ext_resource type="StyleBox" uid="uid://cwt2lgjmj22xl" path="res://Custom Styles/Buttons/Hover/NormalButtonPixelPromise24.tres" id="3_y7aq2"]
+[ext_resource type="AudioStream" uid="uid://4rh1c8il7wnb" path="res://Sounds/Death Screen Sounds/Typing.wav" id="5_kops2"]
+[ext_resource type="AudioStream" uid="uid://vbdqlhfbrx3r" path="res://Sounds/Death Screen Sounds/TerminalOpen.wav" id="6_5h6ur"]
+[ext_resource type="AudioStream" uid="uid://do5kwalbu2cu3" path="res://Sounds/Death Screen Sounds/TerminalPromptAppearance.wav" id="7_xji1v"]
+[ext_resource type="AudioStream" uid="uid://c6snetsiq36nj" path="res://Sounds/Death Screen Sounds/RerunButtonPressed.wav" id="9_f5cwx"]
+[ext_resource type="AudioStream" uid="uid://bf74aw3lb6npr" path="res://Sounds/Death Screen Sounds/ExitButtonPressed.wav" id="10_ixc68"]
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchor_left = 0.091
+anchor_top = 0.104
+anchor_right = 0.903
+anchor_bottom = 0.916
+offset_left = -174.72
+offset_top = -112.32
+offset_right = 186.24
+offset_bottom = 90.7199
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xji1v")
+
+[node name="RedVignette" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 0.00012207
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_y7aq2")
+
+[node name="BGFade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.091
+anchor_top = 0.104
+anchor_right = 0.903
+anchor_bottom = 0.856
+offset_left = -0.720016
+offset_top = -0.32
+offset_right = 0.239868
+offset_bottom = 0.519958
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(780, 406)
+color = Color(0.231373, 0.231373, 0.231373, 0.784314)
+
+[node name="LeftBorder" type="ColorRect" parent="BGFade"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.001
+anchor_right = -0.001
+anchor_bottom = 1.0
+offset_left = -1.43998
+offset_right = 1.56002
+offset_bottom = 0.00012207
+
+[node name="RightBorder" type="ColorRect" parent="BGFade"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.00012207
+offset_right = 3.00012
+offset_bottom = 0.00012207
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TopBorder" type="ColorRect" parent="BGFade"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.00012
+grow_horizontal = 2
+
+[node name="BottomBorder" type="ColorRect" parent="BGFade"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -2.99998
+offset_top = 813.0
+offset_right = 3.00012
+offset_bottom = 816.0
+grow_horizontal = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.497
+anchor_top = 0.48
+anchor_right = 0.497
+anchor_bottom = 0.48
+offset_left = -780.24
+offset_top = -406.4
+offset_right = 779.76
+offset_bottom = 406.6
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(780, 406)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="SimFail" type="Label" parent="CenterContainer/VBoxContainer"]
+texture_filter = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5ajrk")
+theme_override_font_sizes/font_size = 72
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndBorder2" type="ColorRect" parent="CenterContainer/VBoxContainer/SimFail"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+anchor_left = -0.014
+anchor_top = 0.7
+anchor_right = 1.008
+anchor_bottom = 0.7
+offset_left = 0.0419998
+offset_right = -0.0240479
+offset_bottom = 1.99999
+
+[node name="MatsExt" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
+texture_filter = 4
+layout_mode = 2
+theme_override_constants/line_spacing = -60
+theme_override_fonts/font = ExtResource("1_5ajrk")
+theme_override_font_sizes/font_size = 48
+text = "
+Resources Extracted"
+
+[node name="EndBorder2" type="ColorRect" parent="CenterContainer/VBoxContainer/MatsExt"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.86
+anchor_right = 0.512
+anchor_bottom = 0.86
+offset_left = 2.0
+offset_top = -0.180008
+offset_right = -0.536011
+offset_bottom = 1.81999
+
+[node name="Glintcores" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
+texture_filter = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5ajrk")
+text = "  Glintcores: 0"
+
+[node name="SPACE" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "
+"
+
+[node name="RunStats" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
+texture_filter = 4
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5ajrk")
+theme_override_font_sizes/font_size = 48
+text = "Run Statistics"
+
+[node name="EndBorder2" type="ColorRect" parent="CenterContainer/VBoxContainer/RunStats"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+anchor_top = 0.762
+anchor_right = 0.355
+anchor_bottom = 0.762
+offset_left = 2.0
+offset_top = 0.0399971
+offset_right = -0.565002
+offset_bottom = 2.04
+
+[node name="AstryAmt" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
+texture_filter = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5ajrk")
+text = "  Astrynite: 0"
+
+[node name="MeteorAmt" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
+texture_filter = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5ajrk")
+text = "  Meteors Destroyed: 0"
+
+[node name="WaveAmt" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
+texture_filter = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5ajrk")
+text = "  Wave: 0
+"
+
+[node name="EndBorder" type="ColorRect" parent="CenterContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 174.57)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 270
+
+[node name="RerunSim" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_5ajrk")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("2_xvv0o")
+theme_override_styles/hover_pressed = ExtResource("2_xvv0o")
+theme_override_styles/hover = ExtResource("2_xvv0o")
+theme_override_styles/pressed = ExtResource("3_y7aq2")
+theme_override_styles/normal = ExtResource("3_y7aq2")
+text = "                  "
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/RerunSim"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.054
+anchor_right = 1.064
+anchor_bottom = 1.292
+offset_left = -0.0719986
+offset_right = 0.153961
+offset_bottom = -0.0160027
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_5ajrk")
+theme_override_font_sizes/font_size = 24
+text = "Rerun Simulation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitSim" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_5ajrk")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = ExtResource("2_xvv0o")
+theme_override_styles/hover_pressed = ExtResource("2_xvv0o")
+theme_override_styles/hover = ExtResource("2_xvv0o")
+theme_override_styles/pressed = ExtResource("3_y7aq2")
+theme_override_styles/normal = ExtResource("3_y7aq2")
+text = "                "
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/ExitSim"]
+texture_filter = 3
+layout_mode = 0
+offset_right = 297.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("1_5ajrk")
+theme_override_font_sizes/font_size = 24
+text = "Exit Simulation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TypeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kops2")
+max_polyphony = 151
+
+[node name="TerminalOpen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5h6ur")
+volume_db = -17.0
+pitch_scale = 1.6
+
+[node name="TerminalPopup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_xji1v")
+volume_db = -12.0
+pitch_scale = 1.09
+max_polyphony = 151
+
+[node name="ExitPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_f5cwx")
+
+[node name="RerunPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ixc68")
+pitch_scale = 0.5
+
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/RerunSim" to="." method="_on_rerun_sim_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/RerunSim" to="." method="_on_rerun_sim_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/ExitSim" to="." method="_on_exit_sim_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/ExitSim" to="." method="_on_exit_sim_pressed"]

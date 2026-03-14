@@ -1,26 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2rx0mi0uk3wq"]
+[gd_scene load_steps=11 format=3 uid="uid://b2rx0mi0uk3wq"]
 
 [ext_resource type="Script" uid="uid://cvhqj4e52jh5r" path="res://Globals/scene_manager.gd" id="1_0rfot"]
-[ext_resource type="PackedScene" uid="uid://c8xfdx547rcj2" path="res://User Interface/HUD/HUD.tscn" id="1_o7d8l"]
+[ext_resource type="Script" uid="uid://csir6lv6tyv6x" path="res://Globals/super_root.gd" id="1_axv5k"]
+[ext_resource type="PackedScene" uid="uid://c8xfdx547rcj2" path="res://User Interface/Screen Layer/HUD/HUD.tscn" id="1_o7d8l"]
 [ext_resource type="Script" uid="uid://tbuub30a28wr" path="res://Globals/game_manager.gd" id="2_0rfot"]
 [ext_resource type="Script" uid="uid://bbi54f8la3gbg" path="res://User Interface/ui_root.gd" id="3_5o43x"]
-[ext_resource type="PackedScene" uid="uid://dco711o7tk7is" path="res://User Interface/Main Menu/MainMenu.tscn" id="4_jk2qw"]
+[ext_resource type="Script" uid="uid://b743lgdo0a7nf" path="res://Globals/world_root.gd" id="3_pgber"]
+[ext_resource type="PackedScene" uid="uid://dco711o7tk7is" path="res://User Interface/Screen Layer/Main Menu/MainMenu.tscn" id="4_jk2qw"]
+[ext_resource type="Script" uid="uid://bmmm0ctgngvfw" path="res://Globals/audio_manager.gd" id="5_ebmlo"]
+[ext_resource type="Script" uid="uid://jaxpfdwqylmk" path="res://User Interface/Screen Layer/screen_layer.gd" id="6_ebmlo"]
+[ext_resource type="PackedScene" uid="uid://ce5a1uly84nx2" path="res://User Interface/Screen Layer/Death Screen/DeathScreen.tscn" id="8_t3uew"]
 
 [node name="SuperRoot" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_axv5k")
 
 [node name="SceneManager" type="Node" parent="."]
+process_mode = 1
 script = ExtResource("1_0rfot")
 current_world = "res://Levels/Level1.tscn"
 
 [node name="WorldRoot" type="Node" parent="SceneManager"]
+script = ExtResource("3_pgber")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("2_0rfot")
 
-[node name="UI Root" type="CanvasLayer" parent="."]
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("5_ebmlo")
+
+[node name="UIRoot" type="CanvasLayer" parent="."]
+process_mode = 3
 script = ExtResource("3_5o43x")
 
-[node name="ScreenLayer" type="Control" parent="UI Root"]
+[node name="ScreenLayer" type="Control" parent="UIRoot"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,15 +42,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("6_ebmlo")
 
-[node name="HUD" parent="UI Root/ScreenLayer" instance=ExtResource("1_o7d8l")]
+[node name="HUD" parent="UIRoot/ScreenLayer" instance=ExtResource("1_o7d8l")]
+process_mode = 3
 layout_mode = 1
 mouse_filter = 1
 
-[node name="MainMenu" parent="UI Root/ScreenLayer" instance=ExtResource("4_jk2qw")]
+[node name="DeathScreen" parent="UIRoot/ScreenLayer" instance=ExtResource("8_t3uew")]
+visible = false
 layout_mode = 1
 
-[node name="PopupLayer" type="Control" parent="UI Root"]
+[node name="MainMenu" parent="UIRoot/ScreenLayer" instance=ExtResource("4_jk2qw")]
+process_mode = 3
+layout_mode = 1
+
+[node name="PopupLayer" type="Control" parent="UIRoot"]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -46,7 +68,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="DecisionLayer" type="Control" parent="UI Root"]
+[node name="DecisionLayer" type="Control" parent="UIRoot"]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15

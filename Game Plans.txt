@@ -1,0 +1,8 @@
+Currnecy Hierarchy
+	Astrynite: Current game currencies for upgrades (both lost on death)
+	Glintcores: Semipermenant upgrades kept after death (reset on pristeiege)
+	Singulite: Gotten by combining glint cores, semi-perm boost in resource drops
+	Galaxite: fusing singulite (the pristiege material) permenant boosts
+	Cosmonite: Fusing Galaxite, unknown use (for now)
+	Univite: fusing Cosmonite, uknown use
+	Eternite: fusing univite, unknown use, possibly last currency

@@ -8,6 +8,7 @@ extends EntityDamagable
 @onready var HandlerMaster: Node = $HandlerMaster
 var Collision: Node = null
 var Health: Node = null
+var Death: Node = null
 
 var accel: float
 var step_health: float
@@ -20,7 +21,8 @@ func _ready() -> void:
 	HandlerMaster.init_children_handlers(self)
 	
 	#Connect signals
-	Collision.was_damaged.connect(on_hit)
+	Collision.was_damaged.connect(_on_hit)
+	Health.is_dead.connect(_on_death)
 	
 	#Avoids asteroids damaging eachother
 	add_to_group("enemy")
@@ -56,9 +58,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 #Sets global variables to activate update_health_bar_on_hit in process function
-func on_hit(old_health, current_health) -> void:
+func _on_hit(old_health, current_health) -> void:
 	if !health_bar.visible:
 		Health.show_health_bar()
 	step_health_start = old_health - current_health
 	step_health = step_health_start
 	decrement_health_active = true
+
+func _on_death() -> void:
+	Death.init_death()

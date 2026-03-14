@@ -10,7 +10,6 @@ extends CharacterBody2D
 @export var can_collide: bool = false
 @export var can_die: bool = false #Like training dummies to see dmg output (if I ever implement it lol)
 
-
 #Actual game variables:
 @export var _base_body_damage = 0.0 #Used in determining how much damage an entity will do without mutlipliers
 

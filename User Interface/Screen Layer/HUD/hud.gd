@@ -15,8 +15,11 @@ func unbind_player(player: CharacterBody2D) -> void:
 	p = null
 
 func _connect_player_signals() -> void:
-	p.attack_pressed.connect(_on_attack_pressed)
+	p.Attack.attack_pressed.connect(_on_attack_pressed)
 	p.Health.health_changed.connect(_on_health_changed)
+	
+	
+	#Sets the healthbar up
 	_on_health_changed(p.Health.get_health(), p.Health.get_health(),p.Health.get_max_health())
 
 func _disconnect_player_singals() -> void:
@@ -24,8 +27,9 @@ func _disconnect_player_singals() -> void:
 	p.Health.health_changed.connect(_on_health_changed)
 
 #===Player Signal Functions===
-func _on_attack_pressed() -> void:
-	pass
+func _on_attack_pressed(reload: float) -> void:
+	#Call the reload bar UI to start incrementing bar
+	reload_ui.on_player_shoot(reload)
 
 #Called when health changes (+/-)
 func _on_health_changed(old_health:float, current_health:float, max_health:float) -> void:

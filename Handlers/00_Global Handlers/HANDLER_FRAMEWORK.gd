@@ -6,10 +6,9 @@ extends BASEHANDLER
 
 func init_self(entity: CharacterBody2D) -> void:
 	var title = get_handler_title()
-	print(title, entity.name)
 	entity.set(title, self)
-	
 	set_body(entity)
+
 
 #Gets the first half of the CamelCased name for itself (Health from HealthHandler)
 func get_handler_title() -> String:

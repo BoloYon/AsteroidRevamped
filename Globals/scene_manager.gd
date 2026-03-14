@@ -3,6 +3,9 @@ extends Node
 
 @export var current_world: String
 
+@onready var world_root = $WorldRoot
+@onready var UIRoot = get_parent().get_node("UIRoot") #Will always be siblings
+
 var world_node: Node
 var player: CharacterBody2D = null
 
@@ -35,6 +38,7 @@ func change_world(world_path: String) -> void:
 
 
 func _unload_current_world() -> void:
+	world_root.unbind_player()
 	world_node.queue_free()
 
 
@@ -43,4 +47,11 @@ func _instance_world() -> void:
 
 
 func _bind_world() -> void:
+	print("Binding player from world node.")
 	player = world_node.get_player()
+	world_root.bind_player(player)
+
+
+#===Called from world root (Usually UI stuff)===
+func request_death_screen() -> void:
+	UIRoot.request_death_screen()

@@ -35,4 +35,17 @@ func _process(delta: float) -> void:
 		set_process(false)
 	
 	bar.value = health
-	label.text = "%.2f/%.2f" % [health, max_health]
+	print_bar_text()
+
+
+func print_bar_text() -> void:
+	var left = health
+	var right = max_health
+	
+	if left > 10 and right > 10:
+		label.text = "%.0f/%.0f" % [health, max_health]
+	elif left < 10 and right > 10:
+		label.text = "%.2f/%.0f" % [health, max_health]
+	elif right < 10:
+		label.text = "%.2f/%.2f" % [health, max_health]
+		

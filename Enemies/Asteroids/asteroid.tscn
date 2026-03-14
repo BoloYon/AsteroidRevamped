@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ba88armamegi8"]
+[gd_scene load_steps=19 format=3 uid="uid://ba88armamegi8"]
 
 [ext_resource type="Script" uid="uid://wx42nam80ude" path="res://Enemies/Asteroids/Asteroid.gd" id="1_da7a6"]
 [ext_resource type="Texture2D" uid="uid://be73tsv5ukkda" path="res://Enemies/Asteroids/MeteorBasicSkin.png" id="2_ubvxm"]
@@ -6,9 +6,70 @@
 [ext_resource type="Script" uid="uid://dmwl2w215o3ky" path="res://Handlers/00_Global Handlers/MASTER_HANDLER.gd" id="4_slfbv"]
 [ext_resource type="Script" uid="uid://df4aio736en3p" path="res://Handlers/03_NonPlayer Entity Handler/AA_Framework Handlers/nonplayer_health_handler.gd" id="5_u0djf"]
 [ext_resource type="Script" uid="uid://bsnxs8u28do4s" path="res://Handlers/01_Handler Frames/collision_handler.gd" id="5_y002g"]
+[ext_resource type="Script" uid="uid://dhsmqbt8igxkb" path="res://Handlers/03_NonPlayer Entity Handler/AC_Asteroid Handlers/asteroid_death_handler.gd" id="7_y002g"]
+[ext_resource type="Texture2D" uid="uid://bjtdnwl6v7kr8" path="res://Enemies/Asteroids/Death Textures/Shard1.png" id="8_odlc7"]
+[ext_resource type="Texture2D" uid="uid://c4px3vuirwpku" path="res://Enemies/Asteroids/Death Textures/Shard2.png" id="9_qa0og"]
+[ext_resource type="Texture2D" uid="uid://1dhfeyu063y5" path="res://Enemies/Asteroids/Death Textures/Shard3.png" id="10_o20k5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_da7a6"]
 radius = 1004.04
+
+[sub_resource type="Curve" id="Curve_q3w4u"]
+_data = [Vector2(0.746269, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j54v1"]
+curve = SubResource("Curve_q3w4u")
+
+[sub_resource type="Gradient" id="Gradient_nsfyj"]
+offsets = PackedFloat32Array(0, 0.666667)
+colors = PackedColorArray(1, 0.0909423, 0.0594644, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v7nu3"]
+gradient = SubResource("Gradient_nsfyj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_odlc7"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 180.0
+initial_velocity_max = 314.29
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.02
+color_ramp = SubResource("GradientTexture1D_v7nu3")
+alpha_curve = SubResource("CurveTexture_j54v1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_loi6n"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 180.0
+initial_velocity_max = 314.29
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.01
+color_ramp = SubResource("GradientTexture1D_v7nu3")
+alpha_curve = SubResource("CurveTexture_j54v1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qa0og"]
+lifetime_randomness = 0.23
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 180.0
+initial_velocity_max = 314.29
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.02
+scale_max = 0.04
+color_ramp = SubResource("GradientTexture1D_v7nu3")
+alpha_curve = SubResource("CurveTexture_j54v1")
 
 [node name="Asteroid" type="CharacterBody2D"]
 scale = Vector2(0.1, 0.1)
@@ -16,7 +77,7 @@ script = ExtResource("1_da7a6")
 has_health = true
 can_collide = true
 can_die = true
-_base_body_damage = 5.0
+_base_body_damage = 101.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ubvxm")
@@ -39,5 +100,40 @@ script = ExtResource("5_y002g")
 
 [node name="HealthHandler" type="Node" parent="HandlerMaster"]
 script = ExtResource("5_u0djf")
+
+[node name="DeathHandler" type="Node" parent="HandlerMaster"]
+script = ExtResource("7_y002g")
+
+[node name="ParticleMaster" type="Node" parent="."]
+
+[node name="Shards_1" type="GPUParticles2D" parent="ParticleMaster"]
+emitting = false
+amount = 12
+texture = ExtResource("8_odlc7")
+lifetime = 1.4
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_odlc7")
+
+[node name="Shards_2" type="GPUParticles2D" parent="ParticleMaster"]
+emitting = false
+amount = 10
+texture = ExtResource("9_qa0og")
+lifetime = 1.4
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_loi6n")
+
+[node name="Shards_3" type="GPUParticles2D" parent="ParticleMaster"]
+emitting = false
+amount = 5
+texture = ExtResource("10_o20k5")
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_qa0og")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

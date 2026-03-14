@@ -5,11 +5,11 @@ extends HandlerFramework
 signal start_immunity_animation
 signal end_immunity_animation
 signal health_changed
+signal is_dead
 
 
 var _health: float = -1.0
 var _max_health: float = -1.0
-var is_dead: bool = false
 var can_be_hit: bool = true
 
 
@@ -63,15 +63,9 @@ func damage(damage_amount: float) -> void:
 	_health = clampf(_health - damage_amount, 0, _max_health)
 	health_changed.emit(old_health, get_health(), get_max_health())
 	if _health == 0:
-		innit_death()
+		is_dead.emit()
 
 
 #Get's the difference between max and current health
 func get_health_difference() -> float:
 	return get_max_health() - get_health()
-
-
-#Used to play a death animation or wait to be deleted
-func innit_death() -> void:
-	await get_body().get_tree().create_timer(0.1).timeout
-	get_body().queue_free()
