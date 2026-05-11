@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dco711o7tk7is"]
+[gd_scene load_steps=4 format=3 uid="uid://dco711o7tk7is"]
 
 [ext_resource type="Script" uid="uid://b7wmjol8ya2i" path="res://User Interface/Screen Layer/Main Menu/main_menu.gd" id="1_mr325"]
 [ext_resource type="FontFile" uid="uid://re3ljinihu5q" path="res://Fonts/clear-sans/ClearSans-Bold.ttf" id="2_4qsi2"]
+[ext_resource type="FontFile" uid="uid://bglkx7froxdga" path="res://Fonts/Pixel-Promise-All/Pixel_Promise.ttf" id="2_wg7ys"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -22,19 +23,20 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="."]
+texture_filter = 3
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.436
-anchor_top = 0.111
-anchor_right = 0.564
-anchor_bottom = 0.206
-offset_left = 0.879944
-offset_top = 0.119987
-offset_right = 0.119995
-offset_bottom = -0.480011
+anchor_left = 0.389
+anchor_top = 0.18
+anchor_right = 0.611
+anchor_bottom = 0.274
+offset_left = 0.119934
+offset_top = -0.400009
+offset_right = -0.119995
+offset_bottom = 0.0799866
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_4qsi2")
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("2_wg7ys")
+theme_override_font_sizes/font_size = 48
 text = "MAIN MENU"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -43,13 +45,13 @@ vertical_alignment = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.468
-anchor_top = 0.281
+anchor_top = 0.351
 anchor_right = 0.532
-anchor_bottom = 0.327
+anchor_bottom = 0.396
 offset_left = -0.560059
-offset_top = 0.519989
-offset_right = 0.559998
-offset_bottom = -0.160034
+offset_top = -0.0800171
+offset_right = 0.560059
+offset_bottom = 0.319977
 theme_override_fonts/font = ExtResource("2_4qsi2")
 theme_override_font_sizes/font_size = 29
 text = "Play"
@@ -58,13 +60,13 @@ text = "Play"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.468
-anchor_top = 0.373
+anchor_top = 0.442
 anchor_right = 0.532
-anchor_bottom = 0.418
-offset_left = -0.560059
-offset_top = -0.220032
-offset_right = 0.559998
-offset_bottom = 0.179993
+anchor_bottom = 0.488
+offset_left = -0.559998
+offset_top = 0.259949
+offset_right = 0.560059
+offset_bottom = -0.420044
 theme_override_fonts/font = ExtResource("2_4qsi2")
 theme_override_font_sizes/font_size = 29
 text = "Settings"
@@ -73,13 +75,13 @@ text = "Settings"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.468
-anchor_top = 0.464
+anchor_top = 0.534
 anchor_right = 0.532
-anchor_bottom = 0.509
-offset_left = -0.560059
-offset_top = 0.119965
-offset_right = 0.559998
-offset_bottom = 0.519958
+anchor_bottom = 0.579
+offset_left = -0.559998
+offset_top = -0.480042
+offset_right = 0.560059
+offset_bottom = -0.0800781
 theme_override_fonts/font = ExtResource("2_4qsi2")
 theme_override_font_sizes/font_size = 29
 text = "Exit"

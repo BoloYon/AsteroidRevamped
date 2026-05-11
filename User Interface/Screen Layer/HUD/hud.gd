@@ -35,3 +35,4 @@ func _on_attack_pressed(reload: float) -> void:
 func _on_health_changed(old_health:float, current_health:float, max_health:float) -> void:
 	#Calls the player's healthbar to step-decrement and show health
 	health_ui.step_health(old_health, current_health, max_health)
+	

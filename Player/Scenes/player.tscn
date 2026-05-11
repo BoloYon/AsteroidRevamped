@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://c7fcvxob8kqnp" path="res://Handlers/02_Player Handlers/player_death_handler.gd" id="11_yq18l"]
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(0.045, 0.045)
+scale = Vector2(0.035, 0.035)
 script = ExtResource("1_rg7kn")
 bulletSkins = Array[PackedScene]([ExtResource("2_omv0o")])
 _speed = 300.0

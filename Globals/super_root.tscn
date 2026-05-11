@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2rx0mi0uk3wq"]
+[gd_scene load_steps=13 format=3 uid="uid://b2rx0mi0uk3wq"]
 
 [ext_resource type="Script" uid="uid://cvhqj4e52jh5r" path="res://Globals/scene_manager.gd" id="1_0rfot"]
 [ext_resource type="Script" uid="uid://csir6lv6tyv6x" path="res://Globals/super_root.gd" id="1_axv5k"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://bmmm0ctgngvfw" path="res://Globals/audio_manager.gd" id="5_ebmlo"]
 [ext_resource type="Script" uid="uid://jaxpfdwqylmk" path="res://User Interface/Screen Layer/screen_layer.gd" id="6_ebmlo"]
 [ext_resource type="PackedScene" uid="uid://ce5a1uly84nx2" path="res://User Interface/Screen Layer/Death Screen/DeathScreen.tscn" id="8_t3uew"]
+[ext_resource type="PackedScene" uid="uid://uyp2gu3ngixu" path="res://User Interface/Decision Layer/DecisionLayer.tscn" id="11_763hg"]
+[ext_resource type="Script" uid="uid://cx2x3k7icipv3" path="res://User Interface/Decision Layer/decision_layer.gd" id="11_t3uew"]
 
 [node name="SuperRoot" type="Node2D"]
 process_mode = 3
@@ -24,9 +26,11 @@ current_world = "res://Levels/Level1.tscn"
 script = ExtResource("3_pgber")
 
 [node name="GameManager" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("2_0rfot")
 
 [node name="AudioManager" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("5_ebmlo")
 
 [node name="UIRoot" type="CanvasLayer" parent="."]
@@ -52,6 +56,7 @@ mouse_filter = 1
 [node name="DeathScreen" parent="UIRoot/ScreenLayer" instance=ExtResource("8_t3uew")]
 visible = false
 layout_mode = 1
+offset_bottom = 0.0
 
 [node name="MainMenu" parent="UIRoot/ScreenLayer" instance=ExtResource("4_jk2qw")]
 process_mode = 3
@@ -68,13 +73,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="DecisionLayer" type="Control" parent="UIRoot"]
-process_mode = 3
+[node name="DecisionLayer" parent="UIRoot" instance=ExtResource("11_763hg")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
+script = ExtResource("11_t3uew")

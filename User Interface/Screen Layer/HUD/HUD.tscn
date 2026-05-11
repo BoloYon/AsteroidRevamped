@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8xfdx547rcj2"]
+[gd_scene load_steps=5 format=3 uid="uid://c8xfdx547rcj2"]
 
 [ext_resource type="Script" uid="uid://ft1ecly8w10f" path="res://User Interface/Screen Layer/HUD/hud.gd" id="1_pnutd"]
 [ext_resource type="PackedScene" uid="uid://biyxtcbm5yx88" path="res://User Interface/Screen Layer/HUD/PlayerHealthBar.tscn" id="1_xlpha"]
 [ext_resource type="PackedScene" uid="uid://cbqrk887ablw1" path="res://User Interface/Screen Layer/HUD/ReloadBar.tscn" id="2_pnutd"]
+[ext_resource type="PackedScene" uid="uid://dudj15ostjyv1" path="res://User Interface/Screen Layer/HUD/SideBar.tscn" id="4_qlv3m"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -18,4 +19,7 @@ script = ExtResource("1_pnutd")
 layout_mode = 1
 
 [node name="ReloadBar" parent="." instance=ExtResource("2_pnutd")]
+layout_mode = 1
+
+[node name="SideBar" parent="." instance=ExtResource("4_qlv3m")]
 layout_mode = 1

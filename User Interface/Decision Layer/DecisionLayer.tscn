@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://uyp2gu3ngixu"]
+
+[ext_resource type="PackedScene" uid="uid://c8ux3hr32oco7" path="res://User Interface/Decision Layer/ConfirmPopup.tscn" id="1_7u3wu"]
+
+[node name="DecisionLayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmPopup" parent="." instance=ExtResource("1_7u3wu")]
+visible = false
+layout_mode = 1

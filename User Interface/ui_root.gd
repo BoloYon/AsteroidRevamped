@@ -1,15 +1,9 @@
 extends CanvasLayer
 
-#===Scene Manager===
+#Connected Nodes
 @onready var SceneManager:Node = get_parent().get_node("SceneManager")
-
-#===Screen layer and its children===
 @onready var ScreenLayer:Control = $ScreenLayer
-
-#===Popup layer and its children===
 @onready var PopupLayer:Control = $PopupLayer
-
-#===Decision layer and its children===
 @onready var DecisionLayer:Control = $DecisionLayer
 
 var player: CharacterBody2D = null
@@ -18,6 +12,8 @@ var player: CharacterBody2D = null
 #Connect all signals under UI Root
 func _ready() -> void:
 	ScreenLayer.MainMenu.play_button_pressed.connect(_on_play_requested)
+	ScreenLayer.get_node("HUD/SideBar").exit_sim_requested.connect(_on_exit_sim_requested)
+	ScreenLayer.get_node("HUD/SideBar").decision_made.connect(_on_decision_made)
 
 
 func _on_play_requested() -> void:
@@ -52,3 +48,12 @@ func connect_all() -> void:
 #---Player death---
 func request_death_screen() -> void:
 	ScreenLayer.show_death_screen()
+
+
+#===Singal Functions===
+func _on_exit_sim_requested(data) -> void:
+	DecisionLayer.show()
+	DecisionLayer.decide_type(data)
+
+func _on_decision_made() -> void:
+	DecisionLayer.hide()

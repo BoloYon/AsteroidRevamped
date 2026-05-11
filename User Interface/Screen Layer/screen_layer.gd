@@ -7,8 +7,11 @@ extends Control
 
 var player: CharacterBody2D = null
 
-
 #==Bindings===
+#---Binds to signals---
+func _ready() -> void:
+	pass
+	
 #---Binds itself and children to the current player---
 func bind_player(p:CharacterBody2D) -> void:
 	player = p

@@ -11,7 +11,7 @@ func start_animation() -> void:
 	visible = true
 	await animate_red_vignette(1.0)
 	await animate_death_box(0.1)
-	await type_header("SIMULATION TERMINATED", 0.05)
+	await type_header("\nSIMULATION TERMINATED", 0.05)
 	await appear_subheaders(0.5, 0.2)
 
 
